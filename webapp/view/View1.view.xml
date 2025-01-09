@@ -1,20 +1,11 @@
 <mvc:View controllerName="com.app.zuiplanningcalender.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:unified="sap.ui.unified"
     xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Page id="page" title="{i18n>title}">
     	<VBox class="sapUiSmallMargin">
-			<OverflowToolbar height="100%" width="100%">
-				<Text text="My Calender" />
-					<ToolbarSpacer/>
-				<Label text="Plant" labelFor="stickyModeSelect" />
-				<Select id="stickyModeSelect">
-					<core:ListItem text="4092" key="4092" />
-					<core:ListItem text="1833" key="1833" />
-					<core:ListItem text="0595" key="0595" />
-				</Select>
-				<Button text="Default" type="Accept"></Button>
-			</OverflowToolbar>
 		<SinglePlanningCalendar
 			id="SPC1"
+			title="My Calander"
 			class="sapUiSmallMarginTop"
 			viewChange="handleViewChange"
 			appointmentSelect="handleAppointmentSelect"
@@ -29,15 +20,17 @@
 			enableAppointmentsResize="{settings>/enableAppointmentsResize}"
 			enableAppointmentsCreate="{settings>/enableAppointmentsCreate}"
 			appointments="{path: '/appointments'}">
-			<!-- <actions>
-				<Button id="addNewAppointment" text="Create" press="handleAppointmentCreate" tooltip="Add new appointment" />
-				<Button id="legendButton" icon="sap-icon://legend" press="handleOpenLegend" tooltip="Open SinglePlanningCalendar legend" ariaHasPopup="Dialog" />
-			</actions> -->
+			<actions>
+			<Label text="Plant" labelFor="stickyModeSelect" />
+				<Select change="onChange" items="{F4Data>/}">
+					<core:ListItem text="{F4Data>Plant}" key="{F4Data>Plant}" />
+				</Select>
+			</actions>
 			<views>
-				<SinglePlanningCalendarDayView key="DayView" title="Day" />
-				<SinglePlanningCalendarWorkWeekView key="WorkWeekView" title="Work Week" />
-				<SinglePlanningCalendarWeekView key="WeekView" title="Week" />
-				<SinglePlanningCalendarMonthView key="MonthView" title="Month" />
+				<SinglePlanningCalendarDayView key="DayView" title="Day" id="ID1"/>
+				<SinglePlanningCalendarWorkWeekView key="WorkWeekView" title="Work Week" id="ID2" />
+				<SinglePlanningCalendarWeekView key="WeekView" title="Week" id="ID3" />
+				<SinglePlanningCalendarMonthView key="MonthView" title="Month" id="ID4"  />
 			</views>
 			<appointments>
 				<unified:CalendarAppointment
@@ -48,6 +41,7 @@
 			</appointments>
 		</SinglePlanningCalendar>
 	</VBox>
+	 </Page>
     <!-- <Page id="page" title="{i18n>title}">
         <content />
     </Page> -->

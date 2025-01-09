@@ -7,22 +7,16 @@
 			title="Order Details"
 			class="sapUiResponsivePadding--header"
 			placement="Auto">
-		<!-- <beginButton>
-			<Button text="Edit" type="Emphasized" press="handleEditButton"/>
-		</beginButton>
-		<endButton>
-			<Button text="Delete" press="handlePopoverDeleteButton"/>
-		</endButton> -->
 		<f:SimpleForm
 				id="appointmentEditForm"
 				editable="false"
 				layout="ResponsiveGridLayout"
 				singleContainerFullSize="false">
-			<Label text="Maint Item"/>
-			<Text text="{Warpl}"/>
+			<!-- <Label text="Maint Item"/>
+			<Text text="{Wapos}"/> -->
 			<Label text="Maint Plan"/>
-			<Text text="{Wapos}"/>
-			<Label text="Order Number"/>
+			<Text text="{Warpl}"/>
+			<Label text="Last Order Number"/>
 			<Text text="{Laufn}"/>
 		</f:SimpleForm>
 	</ResponsivePopover>
