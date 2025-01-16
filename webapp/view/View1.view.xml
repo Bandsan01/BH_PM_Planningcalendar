@@ -5,7 +5,7 @@
     	<VBox class="sapUiSmallMargin">
 		<SinglePlanningCalendar
 			id="SPC1"
-			title="My Calander"
+			title="My Calendar"
 			class="sapUiSmallMarginTop"
 			viewChange="handleViewChange"
 			appointmentSelect="handleAppointmentSelect"
@@ -42,7 +42,4 @@
 		</SinglePlanningCalendar>
 	</VBox>
 	 </Page>
-    <!-- <Page id="page" title="{i18n>title}">
-        <content />
-    </Page> -->
 </mvc:View>
