@@ -28,32 +28,32 @@ sap.ui.define([
 				this.getView().setModel(oModel, "settings");
 				this.firstday = new Date();
 				this.lastday = new Date();
-					this.ind = "";
-                var serviceurl = "/sap/opu/odata/sap/ZC_PM_GETPLANT_CDS/";
-                var oModelF4 = new sap.ui.model.odata.ODataModel(serviceurl);
-               var entity =  "/ZC_PM_GETPLANT"
-			   var that = this;
-			   oModelF4.read(entity, {
-                    method: "GET",
-                    success: function (oData) {
+				this.ind = "";
+				var serviceurl = "/sap/opu/odata/sap/ZC_PM_GETPLANT_CDS/";
+				var oModelF4 = new sap.ui.model.odata.ODataModel(serviceurl);
+				var entity = "/ZC_PM_GETPLANT"
+				var that = this;
+				oModelF4.read(entity, {
+					method: "GET",
+					success: function (oData) {
 						that.selectedPlant = oData.results[0].Plant;
 						var f4Model = new JSONModel([]);
-                        f4Model.setData(oData.results);
-                        that.getView().setModel(f4Model, "F4Data");
+						f4Model.setData(oData.results);
+						that.getView().setModel(f4Model, "F4Data");
 						that.getdetails(that.firstday, that.lastday);
-                    },
-                    error: function (e) {
-                        alert("error");
-                    }
-                })
+					},
+					error: function (e) {
+						alert("error");
+					}
+				})
 			},
-			onChange : function(evt){
-                     this.selectedPlant = evt.oSource.getSelectedKey();
-					 if(this.ind === ""){
-						this.getdetails(this.firstday, this.lastday);
-					 }else{
-						this.getdetails1(this.firstday, this.lastday);
-					 }
+			onChange: function (evt) {
+				this.selectedPlant = evt.oSource.getSelectedKey();
+				if (this.ind === "") {
+					this.getdetails(this.firstday, this.lastday);
+				} else {
+					this.getdetails1(this.firstday, this.lastday);
+				}
 			},
 			getdetails: function (firstday, lastday) {
 				var oModel1 = this.getOwnerComponent().getModel();
@@ -76,7 +76,6 @@ sap.ui.define([
 					filters: ofilter,
 					"async": true,
 					"success": function (oData) {
-
 						const dateFrmtst = sap.ui.core.format.DateFormat.getDateInstance({
 							pattern: "yyyy-MM-ddT01:00:00"
 						});
@@ -97,9 +96,6 @@ sap.ui.define([
 							appointments.push(data);
 						}
 						var appointments1 = { startDate: new Date(), appointments }
-						var newDat = new Date();
-						// var newDat1 = dateFormat.format(newDat).split('-')
-						// var startDate = UI5Date.getInstance(newDat1[2], newDat1[1], newDat1[0]);
 						that.calModel = new JSONModel([]);
 						that.calModel.setData(appointments1)
 						that.getView().setModel(that.calModel);
@@ -109,14 +105,12 @@ sap.ui.define([
 					}
 				});
 			},
-			handleViewChange : function (evt) {
+			handleViewChange: function (evt) {
 				this.ind = "";
 				var a = this.getView().byId("SPC1");
 				var selectedItm = evt.getSource().getSelectedView().split("--")[2];
-				//this.firstday = ""lastday = "";
 				switch (selectedItm) {
 					case "ID1":
-						///   var date = new Date();
 						this.firstday = new Date();
 						this.lastday = new Date();
 						this.getdetails(this.firstday, this.lastday);
@@ -185,8 +179,8 @@ sap.ui.define([
 
 			},
 
-	
-			getdetails1 : function (firstday, lastday) {
+
+			getdetails1: function (firstday, lastday) {
 				var oModel1 = this.getOwnerComponent().getModel();
 				//var Filter2 = new Filter('Startdate', 'EQ', "2024-12-01T00:00:00");
 				var Filter3 = new Filter('Enddate', 'EQ', "2024-12-30T00:00:00");
@@ -241,37 +235,10 @@ sap.ui.define([
 
 			handleAppointmentSelect: function (oEvent) {
 				var oAppointment = oEvent.getParameter("appointment"),
-					oStartDate,
-					oEndDate,
-					oTrimmedStartDate,
-					oTrimmedEndDate,
-					bAllDate,
-					oModel,
 					oView = this.getView();
-
 				if (oAppointment === undefined) {
 					return;
 				}
-				// var oView = this.getView();
-				// if (!this._pValueHelpDialog) {
-				// 	this._pValueHelpDialog = Fragment.load({
-				// 		id: oView.getId(),
-				// 		name: "com.app.zuiplanningcalender.Fragment.Details",
-				// 		controller: this
-				// 	}).then(function (oValueHelpDialog) {
-				// 		oView.addDependent(oValueHelpDialog);
-				// 		return oValueHelpDialog;
-				// 	});
-				// }
-				// this._pValueHelpDialog.then(function (oValueHelpDialog) {
-				// 	oValueHelpDialog.open();
-				// }.bind(this));
-				// oStartDate = oAppointment.getStartDate();
-				// oEndDate = oAppointment.getEndDate();
-				// oTrimmedStartDate = UI5Date.getInstance(oStartDate);
-				// oTrimmedEndDate = UI5Date.getInstance(oEndDate);
-				// bAllDate = false;
-				// oModel = this.getView().getModel("allDay");
 
 				if (!oAppointment.getSelected() && this._pDetailsPopover) {
 					this._pDetailsPopover.then(function (oResponsivePopover) {
@@ -279,16 +246,6 @@ sap.ui.define([
 					});
 					return;
 				}
-
-				// this._setHoursToZero(oTrimmedStartDate);
-				// this._setHoursToZero(oTrimmedEndDate);
-
-				// if (oStartDate.getTime() === oTrimmedStartDate.getTime() && oEndDate.getTime() === oTrimmedEndDate.getTime()) {
-				// 	bAllDate = true;
-				// }
-
-				// oModel.getData().allDay = bAllDate;
-				// oModel.updateBindings();
 
 				if (!this._pDetailsPopover) {
 					this._pDetailsPopover = Fragment.load({
@@ -309,10 +266,10 @@ sap.ui.define([
 			handleMoreLinkPress: function (oEvent) {
 				var oDate = oEvent.getParameter("date"),
 					oSinglePlanningCalendar = this.getView().byId("SPC1");
-				oSinglePlanningCalendar.setSelectedView(oSinglePlanningCalendar.getViews()[2]); // DayView
+				oSinglePlanningCalendar.setSelectedView(oSinglePlanningCalendar.getViews()[0]); // DayView
 				this.getView().getModel().setData({ startDate: oDate }, true);
 			},
-			onExit : function(){
+			onExit: function () {
 				this.getView().byId("SPC1").destroy();
 			}
 		});

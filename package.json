@@ -27,7 +27,7 @@
     "deploy-test": "npm run build && fiori deploy --config ui5-deploy.yaml --testMode true"
   },
   "sapuxLayer": "CUSTOMER_BASE",
-  "author": "",
+  "author": "bandsan01",
   "license": "ISC",
   "dependencies": {
     "accepts": "^1.3.8",
@@ -372,5 +372,13 @@
     "xpath": "^0.0.33",
     "yallist": "^4.0.0",
     "yaml": "^2.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bandsan01/PM_Planningcalendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bandsan01/PM_Planningcalendar/issues"
+  },
+  "homepage": "https://github.com/Bandsan01/PM_Planningcalendar#readme"
 }
